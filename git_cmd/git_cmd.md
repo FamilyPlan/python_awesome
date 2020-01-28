@@ -109,28 +109,41 @@ git branch
 #  master
 #*表示所在分支
 ``` 
-然后在当前dev分支上提交修改
+然后在当前dev分支上提交修改:
 
 ```shell
-#
-$ git checkout -b dev  
+$ git add git_cmd/
+$ git commit -m 'add git cmd related' 
 
-# 上一句相当于下面的两句命令
-$ git branch dev
-$ git checkout dev
+```
+那么，从现在开始，对工作区的修改就是针对 `dev` 分支了，比如刚刚的提交后，`dev` 指针往前移动一步，而master指针不变，如下图所示：
 
-# 查看当前分支
-git branch
-#* dev
-#  master
-#*表示所在分支
-``` 
+![](2.png)
 
+3）当在`dev`分支的开发结束后，可以把`dev`合并到`master`。最简单的方法就是直接把`master`指向`dev`的当前提交，就完成了合并：
 
+```shell
+$ git checkout master
+$ git merge dev
 
+```
 
+![](3.png)
 
+完成合并后，即可删除`dev`分支
 
+```shell
+$ git branch -d dev
+```
 
+4)目前，切换分支可以使用`switch`来实现
+
+```shell
+# 创建并且切换到新的dev分支
+$ git switch -c dev
+
+#直接切换到已有的`master`分支
+$ git switch master
+```
 
  
